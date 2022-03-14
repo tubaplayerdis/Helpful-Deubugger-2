@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "MainPage.xaml.h"
 #include "WhatNewPage.xaml.h"
+#include "CPUInfoPage.xaml.h"
 #include "Conversions.h"
 
 using namespace Helpful_Deubugger_2;
@@ -31,11 +32,15 @@ MainPage::MainPage()
 
 void Helpful_Deubugger_2::MainPage::NavigationView_ItemInvoked(Windows::UI::Xaml::Controls::NavigationView^ sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs^ args)
 {
+	using namespace Windows::UI::Xaml::Interop;
 	String^ item = args->InvokedItemContainer->Tag->ToString();
 	
 	
 	if (item == L"WNP") {
-
+		The_Frame->Navigate(TypeName(WhatNewPage::typeid));
+	}
+	else if (item == L"CPUIP") {
+		The_Frame->Navigate(TypeName(CPUInfoPage::typeid));
 	}
 }
 

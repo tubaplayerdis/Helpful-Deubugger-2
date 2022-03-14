@@ -61,5 +61,8 @@
     <Page Include="WhatNewPage.xaml">
       <Filter>Pages</Filter>
     </Page>
+    <Page Include="CPUInfoPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
   </ItemGroup>
 </Project>

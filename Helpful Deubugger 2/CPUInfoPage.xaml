@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="Helpful_Deubugger_2.CPUInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Helpful_Deubugger_2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="TheGird" Loaded="TheGird_Loaded">
+        <TextBlock HorizontalAlignment="Left" Height="173" Margin="10,10,0,0" TextWrapping="Wrap" Text="CPU Info:" VerticalAlignment="Top" Width="994" FontSize="72"/>
+        <ListView x:Name="The_List_View" HorizontalAlignment="Left" Height="764" Margin="10,193,0,0" VerticalAlignment="Top" Width="923"/>
+
+    </Grid>
+</Page>

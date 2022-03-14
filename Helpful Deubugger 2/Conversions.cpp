@@ -1,3 +1,5 @@
+#include "pch.h"
+#include "Conversions.h"
 #include <corecrt_malloc.h>
 char* wchar_to_char(const wchar_t* pwchar)
 {

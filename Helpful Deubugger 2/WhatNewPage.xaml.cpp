@@ -6,7 +6,10 @@
 #include "pch.h"
 #include "WhatNewPage.xaml.h"
 
+
 using namespace Helpful_Deubugger_2;
+
+
 
 using namespace Platform;
 using namespace Windows::Foundation;
