@@ -21,20 +21,41 @@ namespace GoodLib
             ManagementObjectSearcherv = new ManagementObjectSearcher("select * from Win32_Processor");
             foreach (ManagementObject obj in ManagementObjectSearcherv.Get())
             {
-                ListOf.Add($"Name  -  {obj["Name"]}".ToCharArray()[150]);
-                ListOf.Add($"DeviceID  -  {obj["DeviceID"]}".ToCharArray()[150]);
-                ListOf.Add($"Manufacturer  -  {obj["Manufacturer"]}".ToCharArray()[150]);
-                ListOf.Add($"CurrentClockSpeed  -  {obj["CurrentClockSpeed"]}".ToCharArray()[150]);
-                ListOf.Add($"Caption  -  {obj["Caption"]}".ToCharArray()[150]);
-                ListOf.Add($"NumberOfCores  -  {obj["NumberOfCores"]}".ToCharArray()[150]);
-                ListOf.Add($"NumberOfEnabledCores  -  {obj["NumberOfEnabledCore"]}".ToCharArray()[150]);
-                ListOf.Add($"NumberOfLogicalProcessors  -  {obj["NumberOfLogicalProcessors"]}".ToCharArray()[150]);
-                ListOf.Add($"Architecture  -  {obj["Architecture"]}".ToCharArray()[150]);
-                ListOf.Add($"Family  -  {obj["Family"]}".ToCharArray()[150]);
-                ListOf.Add($"ProcessorType  -  {obj["ProcessorType"]}".ToCharArray()[150]);
-                ListOf.Add($"Characteristics  -  {obj["Characteristics"]}".ToCharArray()[150]);
-                ListOf.Add($"AddressWidth  -  {obj["AddressWidth"]}".ToCharArray()[150]);
-                //Should be 12 index from 0 - 12
+                ListOf.Add(Convert.ToChar($"Name  -  {obj["Name"]}"));
+                ListOf.Add(Convert.ToChar($"Status  -  {obj["Status"]}"));
+                ListOf.Add(Convert.ToChar($"Load Percentage  -  {obj["LoadPercentage"]}"));
+                ListOf.Add(Convert.ToChar($"DeviceID  -  {obj["DeviceID"]}"));
+                ListOf.Add(Convert.ToChar($"Manufacturer  -  {obj["Manufacturer"]}"));
+                ListOf.Add(Convert.ToChar($"Current Clock Speed  -  {obj["CurrentClockSpeed"]}"));
+                ListOf.Add(Convert.ToChar($"Caption  -  {obj["Caption"]}"));
+                ListOf.Add(Convert.ToChar($"Number Of Cores  -  {obj["NumberOfCores"]}"));
+                ListOf.Add(Convert.ToChar($"Number Of Enabled Cores  -  {obj["NumberOfEnabledCore"]}"));
+                ListOf.Add(Convert.ToChar($"Number Of Logical Processors  -  {obj["NumberOfLogicalProcessors"]}"));
+                ListOf.Add(Convert.ToChar($"Max Clock Speed  -  {obj["MaxClockSpeed"]}"));
+                ListOf.Add(Convert.ToChar($"Architecture  -  {obj["Architecture"]}"));
+                ListOf.Add(Convert.ToChar($"Family  -  {obj["Family"]}"));
+                ListOf.Add(Convert.ToChar($"Processor Type  -  {obj["ProcessorType"]}"));
+                ListOf.Add(Convert.ToChar($"Characteristics  -  {obj["Characteristics"]}"));
+                ListOf.Add(Convert.ToChar($"Address Width  -  {obj["AddressWidth"]}"));
+                //Should be 12 index from 0 - 15
+                /*Indexs
+                 * 0 - Name
+                 * 1 - Status
+                 * 2 - Load Percentage
+                 * 3 - DeviceID
+                 * 4 - Manufacturer
+                 * 5 - Current Clock Speed
+                 * 6 - Caption
+                 * 7 - Number Of Cores
+                 * 8 - Number Of Enabled Cores
+                 * 9 - Number Of Logical Processors
+                 * 10 - Max Clock Speed
+                 * 11 - Architecture
+                 * 12 - Family
+                 * 13 - Processor Type
+                 * 14 - Characteristics
+                 * 15 - Address Width
+                 */
             }
         }
     }

@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "CPUInfoPage.xaml.h"
+#include <edpwin32.h>
+#include <wbemcli.h>
 #include <sysinfoapi.h>
 
 
@@ -31,21 +33,34 @@ CPUInfoPage::CPUInfoPage()
 	InitializeComponent();
 }
 
-SYSTEM_INFO sysinfo;
-PSYSTEM_LOGICAL_PROCESSOR_INFORMATION syscpuinfo;
+
 
 void Helpful_Deubugger_2::CPUInfoPage::TheGird_Loaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	
-	GetSystemInfo(&sysinfo);
+
 	
-	CPUInfo^ lil = ref new CPUInfo();
-	lil->ListOf->GetAt(0);
 	
-	ListViewItem^ numberofprocessors = ref new ListViewItem();
 	
-	numberofprocessors->Content = L"Number of processors: " + sysinfo.dwNumberOfProcessors.ToString();
+	/*
+	CPUInfo^ lil;
+	int i = 0;
+	for each (wchar_t var in lil->ListOf)
+	{
+		ListViewItem^ info = ref new ListViewItem();
+
+		info->Content = lil->ListOf->GetAt(i);
+
+		The_List_View->Items->Append(info);
+		i++;
+	}
+	*/
 	
 
-	The_List_View->Items->Append(numberofprocessors);
+	
+	
+
+	
+
+	
 }
