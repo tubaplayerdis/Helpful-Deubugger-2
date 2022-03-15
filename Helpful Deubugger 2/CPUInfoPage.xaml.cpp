@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "CPUInfoPage.xaml.h"
+#include <iostream>
+#include <string>
 #include <edpwin32.h>
 #include <wbemcli.h>
 #include <sysinfoapi.h>
@@ -41,20 +43,31 @@ void Helpful_Deubugger_2::CPUInfoPage::TheGird_Loaded(Platform::Object^ sender, 
 
 	
 	
-	
-	/*
-	CPUInfo^ lil;
-	int i = 0;
-	for each (wchar_t var in lil->ListOf)
-	{
-		ListViewItem^ info = ref new ListViewItem();
+	try {
+		CPUInfo^ lil = ref new CPUInfo();
+		int i = 0;
+		for each (wchar_t var in lil->ListOf)
+		{
+			ListViewItem^ info = ref new ListViewItem();
 
-		info->Content = lil->ListOf->GetAt(i);
+			info->Content = lil->ListOf->GetAt(i);
 
-		The_List_View->Items->Append(info);
-		i++;
+			The_List_View->Items->Append(info);
+			i++;
+		}
 	}
-	*/
+	catch (Exception^ ex) {
+		ListViewItem^ info = ref new ListViewItem();
+		
+		
+		
+		
+		info->Content = ex->Message;
+		The_List_View->Items->Append(info);
+	}
+	
+	
+	
 	
 
 	
