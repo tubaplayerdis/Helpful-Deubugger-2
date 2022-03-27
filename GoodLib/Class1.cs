@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Management;
+using Microsoft.Management.Infrastructure;
+
 
 namespace GoodLib
 {
@@ -14,31 +15,37 @@ namespace GoodLib
     //Expose class
     public sealed class CPUInfo
     {
-        public IList<char> ListOf { get; set; }
-        ManagementObjectSearcher ManagementObjectSearcherv;
+        public IList<char[]> ListOf { get; set; } = new List<char[]>();
+        CimInstance cimv;
         public CPUInfo()
+        {            
+
+        }
+
+        public void Init()
         {
             try
             {
-                ManagementObjectSearcherv = new ManagementObjectSearcher("select * from Win32_Processor");
-                foreach (ManagementObject obj in ManagementObjectSearcherv.Get())
+                CimSession cimSession = CimSession.Create("localhost");
+                IEnumerable<CimInstance> queryInstances = cimSession.EnumerateInstances(@"root/cimv2", "Win32_Processor");  /*QueryInstances("", "", "select * from Win32_Processor")*/
+                foreach (CimInstance obj in queryInstances)
                 {
-                    ListOf.Add(Convert.ToChar($"Name  -  {obj["Name"]}"));
-                    ListOf.Add(Convert.ToChar($"Status  -  {obj["Status"]}"));
-                    ListOf.Add(Convert.ToChar($"Load Percentage  -  {obj["LoadPercentage"]}"));
-                    ListOf.Add(Convert.ToChar($"DeviceID  -  {obj["DeviceID"]}"));
-                    ListOf.Add(Convert.ToChar($"Manufacturer  -  {obj["Manufacturer"]}"));
-                    ListOf.Add(Convert.ToChar($"Current Clock Speed  -  {obj["CurrentClockSpeed"]}"));
-                    ListOf.Add(Convert.ToChar($"Caption  -  {obj["Caption"]}"));
-                    ListOf.Add(Convert.ToChar($"Number Of Cores  -  {obj["NumberOfCores"]}"));
-                    ListOf.Add(Convert.ToChar($"Number Of Enabled Cores  -  {obj["NumberOfEnabledCore"]}"));
-                    ListOf.Add(Convert.ToChar($"Number Of Logical Processors  -  {obj["NumberOfLogicalProcessors"]}"));
-                    ListOf.Add(Convert.ToChar($"Max Clock Speed  -  {obj["MaxClockSpeed"]}"));
-                    ListOf.Add(Convert.ToChar($"Architecture  -  {obj["Architecture"]}"));
-                    ListOf.Add(Convert.ToChar($"Family  -  {obj["Family"]}"));
-                    ListOf.Add(Convert.ToChar($"Processor Type  -  {obj["ProcessorType"]}"));
-                    ListOf.Add(Convert.ToChar($"Characteristics  -  {obj["Characteristics"]}"));
-                    ListOf.Add(Convert.ToChar($"Address Width  -  {obj["AddressWidth"]}"));
+                    ListOf.Add($"Name  -  {obj.CimInstanceProperties["Name"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Status  -  {obj.CimInstanceProperties["Status"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Load Percentage  -  {obj.CimInstanceProperties["LoadPercentage"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"DeviceID  -  {obj.CimInstanceProperties["DeviceID"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Manufacturer  -  {obj.CimInstanceProperties["Manufacturer"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Current Clock Speed  -  {obj.CimInstanceProperties["CurrentClockSpeed"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Caption  -  {obj.CimInstanceProperties["Caption"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Number Of Cores  -  {obj.CimInstanceProperties["NumberOfCores"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Number Of Enabled Cores  -  {obj.CimInstanceProperties["NumberOfEnabledCore"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Number Of Logical Processors  -  {obj.CimInstanceProperties["NumberOfLogicalProcessors"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Max Clock Speed  -  {obj.CimInstanceProperties["MaxClockSpeed"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Architecture  -  {obj.CimInstanceProperties["Architecture"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Family  -  {obj.CimInstanceProperties["Family"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Processor Type  -  {obj.CimInstanceProperties["ProcessorType"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Characteristics  -  {obj.CimInstanceProperties["Characteristics"].Value.ToString()}".ToCharArray());
+                    ListOf.Add($"Address Width  -  {obj.CimInstanceProperties["AddressWidth"].Value.ToString()}".ToCharArray());
                     //Should be 12 index from 0 - 15
                     /*Indexs
                      * 0 - Name
@@ -59,12 +66,13 @@ namespace GoodLib
                      * 15 - Address Width
                      */
                 }
-            } catch (Exception ex)
-            {
-                ListOf.Add(Convert.ToChar(ex.Message));
             }
-            
+            catch (Exception ex)
+            {
+                ListOf.Add(ex.Message.ToCharArray());
+            }
         }
     }
-    
+
 }
+

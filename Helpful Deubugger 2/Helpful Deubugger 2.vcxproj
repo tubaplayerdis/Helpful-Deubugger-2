@@ -238,8 +238,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoodLibcpp\GoodLibcpp.vcxproj">
+      <Project>{7b79c405-0921-4282-8a77-8ae6c5685a95}</Project>
+      <Private>false</Private>
+    </ProjectReference>
     <ProjectReference Include="..\GoodLib\GoodLib.csproj">
-      <Project>{7753e023-fde9-401e-bf6b-90766dee6c5d}</Project>
+      <Project>{4abf5a92-832c-459d-aa2d-4157a47dec1d}</Project>
+      <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -10,6 +10,8 @@
 #include <edpwin32.h>
 #include <wbemcli.h>
 #include <sysinfoapi.h>
+#include <WbemCli.h>
+
 
 
 
@@ -44,7 +46,11 @@ void Helpful_Deubugger_2::CPUInfoPage::TheGird_Loaded(Platform::Object^ sender, 
 	
 	
 	try {
-		CPUInfo^ lil = ref new CPUInfo();
+		
+		
+		
+		
+		lil->Init();
 		int i = 0;
 		for each (wchar_t var in lil->ListOf)
 		{
@@ -55,8 +61,9 @@ void Helpful_Deubugger_2::CPUInfoPage::TheGird_Loaded(Platform::Object^ sender, 
 			The_List_View->Items->Append(info);
 			i++;
 		}
+		
 	}
-	catch (Exception^ ex) {
+	catch (Platform::COMException^ ex) {
 		ListViewItem^ info = ref new ListViewItem();
 		
 		
